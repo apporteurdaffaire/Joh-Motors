@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Joh Motor’s – Mise en relation & véhicules au meilleur prix</title>
+<meta name="description" content="Joh Motor’s met en relation acheteurs et vendeur partenaire pour obtenir votre véhicule au meilleur prix, avec garantie et suivi.">
+<meta property="og:title" content="Joh Motor’s – Mise en relation & véhicules au meilleur prix">
+<meta property="og:description" content="De -10% à -40% selon le modèle • Garantie & suivi • Accompagnement pro.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#b30000">
+
+<style>
+/* ---------------------------
+Base / reset premium
+----------------------------*/
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+}
+body {
+margin: 0;
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+color: #111;
+background: #fff;
+line-height: 1.65;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(1200px, 92vw); margin: 0 auto; }
+
+/* ---------------------------
+Header / Nav (sticky)
+----------------------------*/
+header {
+position: sticky; top: 0; z-index: 999;
+backdrop-filter: saturate(180%) blur(10px);
+background: rgba(255,255,255,0.8);
+border-bottom: 1px solid #eee;
+}
+.nav {
+display: flex; align-items: center; justify-content: space-between;
+padding: 14px 0;
+}
+.brand { font-weight: 700; letter-spacing: .5px; }
+.brand em { color: #b30000; font-style: normal; }
+.nav ul { list-style: none; display: flex; gap: clamp(14px, 2.2vw, 28px); margin: 0; padding: 0; }
+.nav a { opacity: .8; transition: opacity .2s ease; font-weight: 500; }
+.nav a:hover, .nav a:focus { opacity: 1; }
+
+/* ---------------------------
+Hero section (full screen)
+----------------------------*/
+.hero {
+position: relative;
+min-height: 88vh;
+display: grid;
+place-items: center;
+color: #fff;
+text-align: center;
+isolation: isolate;
+overflow: hidden;
+}
+.hero::before {
+/* Image externe légère (CDN Unsplash) : ne prend pas de place sur l’ordi/tel */
+content: "";
+position: absolute; inset: 0;
+background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+z-index: -2;
+transform: scale(1.02);
+}
+.hero::after {
+content: "";
+position: absolute; inset: 0;
+background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35) 40%, rgba(0,0,0,.55));
+z-index: -1;
+}
+.hero .content { padding: 10vh 0; }
+.eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .85rem; opacity: .9; }
+h1.hero-title {
+margin: 10px 0 14px;
+font-size: clamp(28px, 4.8vw, 54px);
+font-weight: 800;
+line-height: 1.12;
+}
+.hero-sub { opacity: .92; font-size: clamp(14px, 2.1vw, 18px); }
+.cta-row { margin-top: 22px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn {
+display: inline-flex; align-items: center; justify-content: center;
+padding: 12px 18px; border-radius: 999px; border: 1px solid transparent;
+font-weight: 600; cursor: pointer; transition: transform .05s ease, background .2s ease, color .2s ease;
+user-select: none;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: #b30000; color: #fff; }
+.btn-primary:hover { background: #950000; }
+.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+.btn-ghost:hover { border-color: #fff; }
+
+/* ---------------------------
+Sections structure
+----------------------------*/
+section { padding: clamp(52px, 8vw, 96px) 0; }
+.section-head { text-align: center; margin-bottom: clamp(26px, 4vw, 44px); }
+.kicker { text-transform: uppercase; letter-spacing: .18em; color: #b30000; font-weight: 700; font-size: .9rem; }
+h2 { font-size: clamp(24px, 3.2vw, 38px); line-height: 1.2; margin: 8px 0 0; }
+.muted { color: #555; }
+
+/* ---------------------------
+Services (grid)
+----------------------------*/
+.grid {
+display: grid; gap: clamp(16px, 2.2vw, 26px);
+grid-template-columns: repeat(12, 1fr);
+}
+.card {
+grid-column: span 6;
+background: #fff; border: 1px solid #eee; border-radius: 16px;
+padding: clamp(16px, 2.6vw, 26px);
+box-shadow: 0 8px 30px rgba(0,0,0,.05);
+transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 10px 38px rgba(0,0,0,.08); }
+.card h3 { margin: 0 0 6px; font-size: clamp(18px, 2.2vw, 22px); }
+.card p { margin: 0; color: #555; }
+
+@media (max-width: 860px) {
+.card { grid-column: span 12; }
+}
+
+/* ---------------------------
+Alternance image/texte
+----------------------------*/
+.split { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(18px, 3vw, 40px); align-items: center; }
+.split .media {
+border-radius: 18px; overflow: hidden; aspect-ratio: 16/10;
+box-shadow: 0 10px 36px rgba(0,0,0,.1);
+}
+.split .copy h3 { margin-top: 0; font-size: clamp(20px, 2.6vw, 26px); }
+.bullets { display: grid; gap: 10px; margin-top: 10px; }
+.bullet { display: flex; gap: 10px; align-items: flex-start; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #b30000; margin-top: 8px; flex: 0 0 10px; }
+
+@media (max-width: 980px) {
+.split { grid-template-columns: 1fr; }
+}
+
+/* ---------------------------
+Arguments (icons-like)
+----------------------------*/
+.features { display: grid; gap: 18px; grid-template-columns: repeat(4, 1fr); }
+.feature {
+padding: 22px; border-radius: 14px; border: 1px solid #eee; background: #fafafa;
+}
+.feature h4 { margin: 0 0 6px; font-size: 18px; }
+.feature p { margin: 0; color: #555; }
+@media (max-width: 900px) { .features { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+
+/* ---------------------------
+Process (étapes)
+----------------------------*/
+.steps { display: grid; gap: 14px; grid-template-columns: repeat(4, 1fr); counter-reset: step; }
+.step {
+padding: 24px; border: 1px solid #eee; border-radius: 16px; background: #fff;
+box-shadow: 0 10px 28px rgba(0,0,0,.05);
+}
+.step::before {
+counter-increment: step; content: counter(step);
+display: inline-grid; place-items: center;
+width: 34px; height: 34px; border-radius: 50%;
+background: #b30000; color: #fff; font-weight: 700; margin-bottom: 10px;
+}
+.step h4 { margin: 6px 0 4px; }
+.step p { margin: 0; color: #555; }
+@media (max-width: 980px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+/* ---------------------------
+Formulaire
+----------------------------*/
+form {
+width: min(680px, 100%); margin: 0 auto;
+display: grid; gap: 14px;
+background: #fff; border: 1px solid #eee; border-radius: 16px;
+padding: clamp(18px, 3.2vw, 28px);
+box-shadow: 0 10px 28px rgba(0,0,0,.06);
+}
+label { font-weight: 600; font-size: .95rem; }
+input, textarea {
+appearance: none; width: 100%;
+border: 1px solid #ddd; border-radius: 12px; padding: 12px 14px; font-size: 1rem;
+transition: border-color .15s ease, box-shadow .15s ease;
+background: #fafafa;
+}
+input:focus, textarea:focus { outline: none; border-color: #b30000; box-shadow: 0 0 0 4px rgba(179,0,0,.08); background: #fff; }
+textarea { min-height: 140px; resize: vertical; }
+.form-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-wide { padding-left: 22px; padding-right: 22px; }
+
+/* ---------------------------
+FAQ
+----------------------------*/
+.faq { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.qa { border: 1px solid #eee; border-radius: 14px; padding: 18px; background: #fff; }
+.qa h4 { margin: 0 0 6px; }
+.qa p { margin: 0; color: #555; }
+@media (max-width: 860px) { .faq { grid-template-columns: 1fr; } }
+
+/* ---------------------------
+Footer
+----------------------------*/
+footer {
+border-top: 1px solid #eee; background: #f9f9f9;
+color: #444; padding: 34px 0;
+}
+.footgrid { display: grid; gap: 12px; grid-template-columns: 2fr 1fr 1fr; }
+.footgrid a { opacity: .8; }
+.footgrid a:hover { opacity: 1; text-decoration: underline; }
+.copyright { margin-top: 14px; font-size: .9rem; color: #666; }
+@media (max-width: 760px) { .footgrid { grid-template-columns: 1fr; } }
+
+/* ---------------------------
+Utilities
+----------------------------*/
+.mt-s { margin-top: 8px; }
+.mt-m { margin-top: 16px; }
+.mt-l { margin-top: 26px; }
+.center { text-align: center; }
+.accent { color: #b30000; }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<header>
+<div class="container nav" role="navigation" aria-label="Navigation principale">
+<a href="#accueil" class="brand" aria-label="Joh Motor’s - Accueil">
+Joh <em>Motor’s</em>
+</a>
+<ul>
+<li><a href="#services">Services</a></li>
+<li><a href="#offres">Offres</a></li>
+<li><a href="#avantages">Avantages</a></li>
+<li><a href="#process">Process</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="accueil" class="hero" aria-label="Accueil">
+<div class="container content">
+<div class="eyebrow">Mise en relation automobile</div>
+<h1 class="hero-title">Achetez votre véhicule au <span class="accent">meilleur prix</span></h1>
+<p class="hero-sub">De −10% à −40% selon le modèle • Garantie & suivi inclus • Accompagnement professionnel</p>
+<div class="cta-row">
+<a class="btn btn-primary btn-wide" href="#offres">Voir nos offres</a>
+<a class="btn btn-ghost btn-wide" href="#contact">Nous contacter</a>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" aria-labelledby="ttl-services">
+<div class="container">
+<div class="section-head">
+<div class="kicker">Services</div>
+<h2 id="ttl-services">Ce que nous faisons</h2>
+<p class="muted">Joh Motor’s est votre intermédiaire de confiance entre vous et notre vendeur partenaire.</p>
+</div>
+
+<div class="grid">
+<article class="card">
+<h3>Mise en relation & conseil</h3>
+<p>Analyse de votre besoin (budget, usage, modèle) puis mise en relation directe avec notre partenaire.</p>
+</article>
+<article class="card">
+<h3>Prix négociés</h3>
+<p>Bénéficiez de tarifs avantageux : de −10% à −40% selon les modèles et disponibilités.</p>
+</article>
+<article class="card">
+<h3>Garantie & suivi</h3>
+<p>Véhicules garantis, accompagnement jusqu’à la remise des clés et suivi après l’achat.</p>
+</article>
+<article class="card">
+<h3>Commande personnalisée</h3>
+<p>Recherche ciblée et configuration selon vos préférences (motorisation, coloris, options).</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- OFFRES (Split image/texte) -->
+<section id="offres" aria-labelledby="ttl-offres">
+<div class="container">
+<div class="section-head">
+<div class="kicker">Offres</div>
+<h2 id="ttl-offres">Des opportunités à saisir</h2>
+<p class="muted">Nous identifions les meilleures affaires du moment avec transparence.</p>
+</div>
+
+<div class="split">
+<div class="media">
+<img
+src="https://images.unsplash.com/photo-1494972688394-4cc796f9e4c1?q=80&w=1400&auto=format&fit=crop"
+alt="Berline noire premium sur route"
+width="1400" height="875" loading="lazy">
+</div>
+<div class="copy">
+<h3>Exemples de remises</h3>
+<div class="bullets">
+<div class="bullet"><span class="dot"></span><div><strong>Citadines</strong> : jusqu’à −15% selon stock</div></div>
+<div class="bullet"><span class="dot"></span><div><strong>Berlines</strong> : jusqu’à −30% sur séries limitées</div></div>
+<div class="bullet"><span class="dot"></span><div><strong>SUV</strong> : jusqu’à −40% selon configurations</div></div>
+</div>
+<p class="muted mt-m">Remises indicatives, variables selon modèle et disponibilité. Demandez une estimation personnalisée.</p>
+<div class="mt-m">
+<a href="#contact" class="btn btn-primary">Demander un devis</a>
+</div>
+</div>
+</div>
+
+<div class="split mt-l">
+<div class="copy">
+<h3>Transparence & sérénité</h3>
+<p>Nous vous expliquons les conditions de l’offre, le calendrier et les garanties associées. Vous décidez en toute confiance.</p>
+<div class="bullets mt-s">
+<div class="bullet"><span class="dot"></span><div>Contrats & documents fournis par le vendeur partenaire</div></div>
+<div class="bullet"><span class="dot"></span><div>Historique et contrôles disponibles selon le véhicule</div></div>
+<div class="bullet"><span class="dot"></span><div>Accompagnement jusqu’à la livraison</div></div>
+</div>
+</div>
+<div class="media">
+<img
+src="https://images.unsplash.com/photo-1549921296-3b4a3d7c35b9?q=80&w=1400&auto=format&fit=crop"
+alt="SUV gris devant un paysage urbain"
+width="1400" height="875" loading="lazy">
+</div>
+</div>
+</div>
+</section>
+
+<!-- AVANTAGES -->
+<section id="avantages" aria-labelledby="ttl-avantages">
+<div class="container">
+<div class="section-head">
+<div class="kicker">Pourquoi nous choisir</div>
+<h2 id="ttl-avantages">La différence Joh Motor’s</h2>
+</div>
+<div class="features">
+<div class="feature">
+<h4>Prix imbattables</h4>
+<p>Négociation et opportunités pour viser le meilleur rapport qualité/prix.</p>
+</div>
+<div class="feature">
+<h4>Garantie & suivi</h4>
+<p>Véhicules garantis par le partenaire, suivi après l’achat.</p>
+</div>
+<div class="feature">
+<h4>Gain de temps</h4>
+<p>Nous filtrons, comparons et présentons les meilleures options.</p>
+</div>
+<div class="feature">
+<h4>Service pro</h4>
+<p>Accompagnement clair et transparent, de la demande à la livraison.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" aria-labelledby="ttl-process">
+<div class="container">
+<div class="section-head">
+<div class="kicker">Étapes</div>
+<h2 id="ttl-process">Comment ça marche</h2>
+</div>
+<div class="steps">
+<div class="step">
+<h4>Brief rapide</h4>
+<p>Vous partagez votre budget, votre usage et vos préférences.</p>
+</div>
+<div class="step">
+<h4>Recherche ciblée</h4>
+<p>Nous consultons notre vendeur partenaire et sélectionnons les offres.</p>
+</div>
+<div class="step">
+<h4>Validation</h4>
+<p>Vous choisissez, nous cadrons les garanties et les délais.</p>
+</div>
+<div class="step">
+<h4>Livraison</h4>
+<p>Remise des clés + suivi post-achat si besoin.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="ttl-contact">
+<div class="container">
+<div class="section-head">
+<div class="kicker">Contact</div>
+<h2 id="ttl-contact">Parlez-nous de votre projet</h2>
+<p class="muted">Réponse rapide. Vos informations restent confidentielles.</p>
+</div>
+
+<!-- Formulaire via FormSubmit (email direct) -->
+<form action="https://formsubmit.co/calpetardjohann@gmail.com" method="POST">
+<!-- Sécurité & options FormSubmit -->
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="Nouveau contact Joh Motor’s">
+<input type="hidden" name="_template" value="table">
+<!-- Redirection après envoi (facultatif) -->
+<input type="hidden" name="_next" value="https://example.com/merci.html">
+
+<!-- Champ anti-bot (honeypot) -->
+<input type="text" name="_honey" style="display:none">
+
+<div>
+<label for="nom">Nom complet</label>
+<input id="nom" name="nom" type="text" placeholder="Votre nom" required>
+</div>
+<div>
+<label for="email">Email</label>
+<input id="email" name="email" type="email" placeholder="exemple@mail.com" required>
+</div>
+<div>
+<label for="tel">Téléphone</label>
+<input id="tel" name="telephone" type="tel" placeholder="06 46 45 39 57" required>
+</div>
+<div>
+<label for="besoin">Votre besoin</label>
+<textarea id="besoin" name="message" placeholder="Budget, modèle, délais souhaités…" required></textarea>
+</div>
+
+<div class="form-actions">
+<button class="btn btn-primary btn-wide" type="submit">Envoyer ma demande</button>
+<a class="btn" href="tel:+33646453957" aria-label="Appeler Joh Motor’s">Appeler</a>
+<a class="btn" href="https://wa.me/33646453957" target="_blank" rel="noopener" aria-label="WhatsApp Joh Motor’s">WhatsApp</a>
+</div>
+</form>
+
+<p class="center muted mt-m">
+Ou écrivez-nous à <a href="mailto:calpetardjohann@gmail.com">calpetardjohann@gmail.com</a>
+</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+<div class="container">
+<div class="footgrid">
+<div>
+<strong>Joh Motor’s</strong><br>
+Mise en relation clientèle automobile<br>
+Dirigeant : Calpetard Johann
+</div>
+<div>
+<a href="#services">Services</a><br>
+<a href="#offres">Offres</a><br>
+<a href="#avantages">Avantages</a>
+</div>
+<div>
+<a href="#process">Process</a><br>
+<a href="#contact">Contact</a><br>
+<a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">Haut de page</a>
+</div>
+</div>
+<div class="copyright">
+&copy; 2025 Joh Motor’s — Tous droits réservés • Site d’intermédiation (nous ne sommes pas le vendeur)
+</div>
+</div>
+</footer>
+
+</body>
+</html>
