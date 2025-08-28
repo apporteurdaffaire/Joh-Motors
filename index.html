@@ -267,6 +267,32 @@ grid-template-columns: 1fr !important;
 aspect-ratio: auto;
 }
 }
+  /* --- NAVIGATION SCROLLABLE SUR MOBILE --- */
+@media (max-width: 768px) {
+.nav ul {
+display: flex;
+flex-wrap: nowrap; /* évite le retour à la ligne */
+overflow-x: auto; /* autorise le scroll horizontal */
+-webkit-overflow-scrolling: touch; /* inertie iOS */
+scrollbar-width: none; /* masque la barre de scroll (Firefox) */
+}
+.nav ul::-webkit-scrollbar {
+display: none; /* masque la barre de scroll (Chrome/Safari) */
+}
+.nav li {
+flex: 0 0 auto; /* empêche les items de rétrécir */
+}
+}
+
+/* --- HERO : IMAGE PLUS VISIBLE SUR MOBILE --- */
+@media (max-width: 768px) {
+.hero {
+min-height: 100vh; /* plein écran pour mieux voir la photo */
+}
+.hero::before {
+background-position: center top; /* recadre l’image vers le haut */
+}
+}
 </style>
 </head>
 
