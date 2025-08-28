@@ -231,6 +231,42 @@ Utilities
 .mt-l { margin-top: 26px; }
 .center { text-align: center; }
 .accent { color: #b30000; }
+  /* Empêche tout dépassement horizontal */
+html, body {
+max-width: 100%;
+overflow-x: hidden;
+}
+
+/* Images adaptatives */
+img {
+max-width: 100%;
+height: auto;
+display: block;
+}
+
+/* Hero section : corriger l’image qui déborde sur mobile */
+.hero::before {
+background-size: cover;
+background-position: center;
+}
+
+/* Navigation : réduire l’espacement quand écran petit */
+@media (max-width: 768px) {
+.nav ul {
+gap: 14px;
+font-size: 14px;
+}
+}
+
+/* Grilles : passer en une colonne sur mobile */
+@media (max-width: 768px) {
+.grid, .split, .features, .steps, .faq {
+grid-template-columns: 1fr !important;
+}
+.split .media {
+aspect-ratio: auto;
+}
+}
 </style>
 </head>
 
